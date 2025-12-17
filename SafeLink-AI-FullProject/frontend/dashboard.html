@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SafeLink AI</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-shield-alt"></i> SafeLink AI</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="max-width: 1200px;">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Threat Analytics Dashboard</h2>
+        
+        <div class="dashboard-grid">
+            <div class="card stat-item">
+                <h3>Total Scans</h3>
+                <p id="total-scans">0</p>
+            </div>
+            <div class="card stat-item scam">
+                <h3>Scams Detected</h3>
+                <p id="scam-count">0</p>
+            </div>
+            <div class="card stat-item safe">
+                <h3>Safe Items</h3>
+                <p id="safe-count">0</p>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="chart-container">
+                <h3>Scan Breakdown</h3>
+                <canvas id="scans-pie-chart"></canvas>
+                <div id="pie-chart-empty" class="empty-state" style="display: none;">
+                    <i class="fas fa-chart-pie"></i>
+                    <p>No data available to display chart.</p>
+                </div>
+            </div>
+            <div class="chart-container">
+                <h3>Scan History</h3>
+                <canvas id="scans-line-chart"></canvas>
+                 <div id="line-chart-empty" class="empty-state" style="display: none;">
+                    <i class="fas fa-chart-line"></i>
+                    <p>Not enough data to show a trend.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 2rem;">
+            <h3>Most Common Suspicious Keywords</h3>
+            <div id="keywords-table-container" class="table-container">
+                <table id="keywords-table">
+                    <thead>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="keywords-empty" class="empty-state" style="display: none;">
+                <i class="fas fa-search"></i>
+                <p>No suspicious keywords have been logged yet.</p>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

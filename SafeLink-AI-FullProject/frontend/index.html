@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeLink AI - Advanced Threat Detection</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-shield-alt"></i> SafeLink AI</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Advanced Threat Scanner</h2>
+            <p>Select an input method to check for potential scams, phishing, or fraudulent content.</p>
+            
+            <div class="input-tabs">
+                <button class="tab-button active" data-tab="text"><i class="fas fa-font"></i> Text</button>
+                <button class="tab-button" data-tab="url"><i class="fas fa-link"></i> URL</button>
+                <button class="tab-button" data-tab="file"><i class="fas fa-file-upload"></i> File</button>
+            </div>
+
+            <form id="scan-form">
+                <!-- Text Input -->
+                <div id="text-tab" class="tab-content active">
+                    <div class="form-group">
+                        <textarea id="text-input" placeholder="Paste text here, like an email or a suspicious message..."></textarea>
+                    </div>
+                </div>
+
+                <!-- URL Input -->
+                <div id="url-tab" class="tab-content">
+                    <div class="form-group">
+                        <textarea id="url-input" rows="3" placeholder="Enter a URL, e.g., http://suspicious-link.com"></textarea>
+                    </div>
+                </div>
+
+                <!-- File Input -->
+                <div id="file-tab" class="tab-content">
+                    <div class="form-group">
+                        <label for="file-input" class="file-upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag & Drop your file here</p>
+                            <p>or <strong>click to browse</strong></p>
+                            <span>PDF, DOCX, TXT, PNG, JPG supported</span>
+                        </label>
+                        <input type="file" id="file-input">
+                        <p id="file-name"></p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">
+                    <i class="fas fa-search"></i> Scan Now
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="loader-container">
+        <div class="scanner-loader"></div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

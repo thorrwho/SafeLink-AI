@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results - SafeLink AI</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.4.0/justgage.min.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-shield-alt"></i> SafeLink AI</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="dashboard.html">Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card result-card">
+            <div id="result-gauge"></div>
+            <h2 id="result-label"></h2>
+        </div>
+
+        <div class="card explanation-card">
+            <h3>Analysis Details</h3>
+            <p id="explanation-text"></p>
+            <div id="keywords-container" class="keywords" style="display: none;">
+                <h4>Suspicious Keywords Found:</h4>
+                <div id="keywords-list"></div>
+            </div>
+        </div>
+
+        <a href="index.html" class="btn"><i class="fas fa-redo"></i> Scan Another</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultData = JSON.parse(sessionStorage.getItem('scanResult'));
+            const resultLabel = document.getElementById('result-label');
+            const explanationText = document.getElementById('explanation-text');
+            const keywordsContainer = document.getElementById('keywords-container');
+            const keywordsList = document.getElementById('keywords-list');
+
+            if (resultData) {
+                const { risk_score, label, explanation, keywords } = resultData;
+                
+                let indicatorClass = 'warning';
+                let resultTitle = 'Analysis Complete';
+                let color = '#ffc107';
+
+                if (label === 'scam') {
+                    indicatorClass = 'scam';
+                    resultTitle = 'High Risk';
+                    color = '#dc3545';
+                } else if (label === 'not_scam') {
+                    indicatorClass = 'safe';
+                    resultTitle = 'Low Risk';
+                    color = '#28a745';
+                }
+
+                // Set result text and class
+                resultLabel.textContent = resultTitle;
+                resultLabel.className = indicatorClass;
+
+                // Create the gauge
+                new JustGage({
+                    id: 'result-gauge',
+                    value: risk_score * 100,
+                    min: 0,
+                    max: 100,
+                    title: "Risk Score",
+                    levelColors: [
+                        '#28a745', // Green
+                        '#ffc107', // Yellow
+                        '#dc3545'  // Red
+                    ],
+                    formatNumber: true,
+                    symbol: '%'
+                });
+
+                // Explanation
+                explanationText.textContent = explanation || 'No detailed explanation available.';
+
+                // Keywords
+                if (keywords && keywords.length > 0) {
+                    keywordsContainer.style.display = 'block';
+                    keywordsList.innerHTML = keywords.map(kw => `<span>${kw}</span>`).join('');
+                }
+
+            } else {
+                resultLabel.textContent = 'No Result';
+                explanationText.textContent = 'No result to display. Please perform a scan first.';
+            }
+        });
+    </script>
+</body>
+</html>
