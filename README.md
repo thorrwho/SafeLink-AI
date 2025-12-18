@@ -83,14 +83,29 @@ Note: Trained model files are intentionally excluded from GitHub for security an
 
 3️⃣ Start Backend Server
 cd backend
-python app.py
 
-4️⃣ Run Frontend
 
-Open index.html
-OR
 
-Start frontend server (if React)
+# Install the npm dependencies (including multer, pdf-parse, tesseract, etc.)
+npm install
+
+# Start the server
+node server.js
+```
+### 🌐 3. Frontend Application
+
+The frontend is served directly by the backend. Once the backend is running, you can access the application in your web browser.
+
+1.  **Open your browser** and navigate to:
+    [http://localhost:5000](http://localhost:5000)
+
+2.  Use the new tabbed interface to choose your input method: **Text**, **URL**, or **File**.
+
+3.  After a scan, you will be redirected to the redesigned **Results** page with a risk gauge and detailed analysis.
+
+4.  Visit the **Dashboard** (`http://localhost:5000/dashboard.html`) to see the redesigned analytics on all scans performed.
+
+---
 
 🔐 Security Note
 
