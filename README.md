@@ -1,5 +1,5 @@
 SafeLink-AI
-
+Deployed Link- https://pngd79pm-5000.inc1.devtunnels.ms/
 AI-powered malicious link detection system
 
 SafeLink-AI is a security-focused application designed to detect malicious or unsafe URLs using machine learning.
